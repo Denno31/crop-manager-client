@@ -1,4 +1,4 @@
-import Axios from "axios";
+import { Axios } from "./axiosInstance";
 import {
   ADD_USER_FAIL,
   ADD_USER_REQUEST,
@@ -23,10 +23,7 @@ import {
 export const userSignin = (email, password) => async (dispatch) => {
   dispatch({ type: USER_SIGN_REQUEST, payload: { email, password } });
   try {
-    const { data } = await Axios.post(
-      "https://crop-manager-api.onrender.com/api/user/signin",
-      { email, password }
-    );
+    const { data } = await Axios.post("/api/user/signin", { email, password });
     dispatch({ type: USER_SIGN_SUCCESS, payload: data });
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {

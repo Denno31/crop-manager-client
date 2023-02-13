@@ -1,4 +1,4 @@
-import Axios from "axios";
+import { Axios } from "./axiosInstance";
 import {
   FETCH_CROPS_FAIL,
   FETCH_CROPS_REQUEST,

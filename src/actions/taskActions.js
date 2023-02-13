@@ -1,4 +1,4 @@
-import Axios from "axios";
+import { Axios } from "./axiosInstance";
 import {
   FETCH_TASKS_FAIL,
   FETCH_TASKS_REQUEST,
@@ -87,15 +87,19 @@ export const updateTask = (task) => async (dispatch, getState) => {
     });
   }
 };
-export const updatePaidStatusTask = (task)=>async(dispatch,getState)=>{
+export const updatePaidStatusTask = (task) => async (dispatch, getState) => {
   dispatch({ type: UPDATE_TASK_REQUEST, payload: task });
-    try {
+  try {
     const {
       userSignin: { userInfo },
     } = getState();
-    const { data } = await Axios.put(`/api/activity/task/paid/${task}`, {}, {
-      headers: { Authorization: `Bearer ${userInfo.token}` },
-    });
+    const { data } = await Axios.put(
+      `/api/activity/task/paid/${task}`,
+      {},
+      {
+        headers: { Authorization: `Bearer ${userInfo.token}` },
+      }
+    );
     dispatch({ type: UPDATE_TASK_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -106,8 +110,7 @@ export const updatePaidStatusTask = (task)=>async(dispatch,getState)=>{
           : error.message,
     });
   }
-
-}
+};
 export const deleteTask = (id) => async (dispatch, getState) => {
   console.log("here");
   dispatch({ type: DELETE_TASK_REQUEST, payload: id });

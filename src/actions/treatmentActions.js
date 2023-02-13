@@ -1,4 +1,4 @@
-import Axios from "axios";
+import { Axios } from "./axiosInstance";
 import {
   FETCH_TREATMENTS_FAIL,
   FETCH_TREATMENTS_REQUEST,
